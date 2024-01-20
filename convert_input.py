@@ -55,13 +55,12 @@ df.columns = df.columns.str.replace(' ', '_')
 # remove all ' from column names
 df.columns = df.columns.str.replace('\'', '')
 
+# If the first column is 'Site_id', rename it to 'ZPPG_id'
+if 'Site_id' in df.columns:
+    df.rename(columns={'Site_id': 'ZPPG_id'}, inplace=True)
 
 # List of column names in the desired order
 cols_order = ['ZPPG_id', 'Longitude', 'Latitude', 'Shortitude', 'Deltitude', 'Feng_Shui_of_Surrounding_Area', 'Local_Value_of_Pi', 'Murphys_Constant', 'Strange_Smell_EXTREMELY', 'Strange_Smell_No', 'Strange_Smell_Somewhat', 'Air_Tastes_Like_Apples', 'Air_Tastes_Like_Burning', 'Air_Tastes_Like_Copper', 'Air_Tastes_Like_Mint', 'Air_Tastes_Like_Nothing_In_Particular', 'Otherworldly_Skittering', 'Unearthly_Squelching', 'Eerie_Silence', 'Impossible_Humming', 'Unnatural_Buzzing', 'ZPPG_Performance']
-
-# Check if the first column is 'ZPPG_id' or 'Site_id'
-if 'Site_id' in df.columns:
-    cols_order[0] = 'Site_id'
 
 # Check if 'ZPPG_Performance' should be included
 if not has_perf:
